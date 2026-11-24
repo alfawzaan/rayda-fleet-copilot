@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+
+# Environment & secrets
+.env
+.env.local
+
+# Local runtime state (SQLite DBs, checkpoints, audit logs, eval reports)
+runtime/
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+evals/reports/*.json
+evals/reports/*.md
+
+# OS / IDE / Agent tooling
+.DS_Store
+.vscode/
+.idea/
+.agents/
+.claude/

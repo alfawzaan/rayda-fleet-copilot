@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rayda-fleet-copilot"
+version = "0.1.0"
+description = "Agentic AI Fleet Copilot for IT asset telemetry reasoning, trend detection, and guarded operational actions."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "langgraph>=0.4.0",
+    "langgraph-checkpoint-sqlite>=2.0.0",
+    "langchain-core>=0.3.50",
+    "langchain-google-genai>=2.1.0",
+    "pydantic>=2.10.0",
+    "pydantic-settings>=2.7.0",
+    "python-dotenv>=1.0.1",
+    "httpx>=0.28.0",
+    "typer>=0.15.0",
+    "rich>=13.9.0",
+    "streamlit>=1.44.0",
+    "pandas>=2.2.0",
+]
+
+[project.optional-dependencies]
+openai = ["langchain-openai>=0.3.0"]
+anthropic = ["langchain-anthropic>=0.3.0"]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.9.0",
+]
+
+[project.scripts]
+fleet-copilot = "fleet_copilot.interfaces.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fleet_copilot"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["B008", "E501"]
